@@ -12,7 +12,7 @@ Style: StyleB,Arial,64,&H00FFFFCC,&H000000FF,&H00444444,&H80000000,0,0,0,0,100,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,今日は字幕動画のテストです。
-Dialogue: 0,0:00:03.70,0:00:06.20,StyleA,,0,0,0,,話者タグ付きの例です。
-Dialogue: 0,0:00:06.40,0:00:09.00,StyleB,,0,0,0,,タグを消さずに推敲します。
+Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,This is a caption workflow test.
+Dialogue: 0,0:00:03.70,0:00:06.20,StyleA,,0,0,0,,This line includes a speaker tag.
+Dialogue: 0,0:00:06.40,0:00:09.00,StyleB,,0,0,0,,The tag should be preserved during refinement.
 

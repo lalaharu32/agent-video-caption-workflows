@@ -1,8 +1,8 @@
 # Security Policy
 
-このリポジトリは、字幕動画制作の汎用ワークフローだけを公開対象にしています。
+This repository contains public workflow templates for captioned video production.
 
-IssueやPull Requestに、APIキー、アクセストークン、サービスアカウントキー、個人名、配信先、非公開プロンプト、実案件の動画ファイル名を含めないでください。
+Do not include API keys, access tokens, service account keys, personal names, destination URLs, private prompts, or real project filenames in issues or pull requests.
 
-セキュリティ上の問題を見つけた場合は、公開Issueに秘密情報を貼らず、リポジトリ所有者へ非公開で連絡してください。
+If you find a security issue, do not paste secrets into a public issue. Contact the repository owner privately.
 

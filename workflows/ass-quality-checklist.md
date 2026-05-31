@@ -1,48 +1,48 @@
-# ASS品質確認チェックリスト
+# ASS Quality Checklist
 
-SRTからASSへ変換した後、字幕付き動画を書き出す前に確認する項目です。
+Use this checklist after converting SRT subtitles into ASS.
 
-## 形式確認
+## Format Checks
 
-- `[Script Info]` があること
-- `[V4+ Styles]` があること
-- `[Events]` があること
-- `Dialogue:` 行が存在すること
-- 解像度が出力動画と合っていること
+- `[Script Info]` exists
+- `[V4+ Styles]` exists
+- `[Events]` exists
+- `Dialogue:` lines exist
+- The script resolution matches the output video
 
-## タイムスタンプ確認
+## Timing Checks
 
-- 開始時刻が終了時刻より前であること
-- 前後の字幕が意図せず長時間重なっていないこと
-- 最終字幕が動画後半まで残っていること
-- 時刻の形式がASSとして正しいこと
+- Every start time is before its end time
+- Adjacent subtitles do not overlap for an unintended long duration
+- The final subtitle reaches the later part of the video
+- ASS timestamp formatting is valid
 
-## 表示確認
+## Visual Checks
 
-- 1つの字幕が長すぎないこと
-- 改行が多すぎないこと
-- 画面外にはみ出していないこと
-- 話者別スタイルがある場合、途中でDefaultに戻っていないこと
-- 強調色を使う場合、閉じタグ忘れがないこと
+- No subtitle is too long for the frame
+- No subtitle uses too many line breaks
+- Subtitles do not render outside the visible area
+- Speaker styles do not unexpectedly fall back to `Default`
+- Color override tags are closed correctly when used
 
-## 目視確認
+## Manual Spot Checks
 
-最低でも以下を確認します。
+At minimum, review these parts of the rendered test video.
 
-- 冒頭1分
-- 中盤の任意箇所
-- 終盤1分
-- 字幕が密集する場面
-- 話者が切り替わる場面
+- First minute
+- A middle section
+- Final minute
+- Dense subtitle sections
+- Speaker-switching sections
 
-## 報告例
+## Report Template
 
 ```text
-ASS確認完了
-- Dialogue行: 120件
-- タイムスタンプ逆転: 0件
-- 長すぎる字幕: 0件
-- 3行以上の字幕: 0件
-- 話者スタイル崩れ: 0件
+ASS review complete
+- Dialogue lines: 120
+- Reversed timestamps: 0
+- Overlong subtitles: 0
+- Subtitles with 3+ lines: 0
+- Speaker style issues: 0
 ```
 

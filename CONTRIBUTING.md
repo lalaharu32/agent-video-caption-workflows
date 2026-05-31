@@ -1,18 +1,20 @@
 # Contributing
 
-改善提案やPull Requestは歓迎です。
+Issues and pull requests are welcome.
 
-## 方針
+## Guidelines
 
-- 個人環境の絶対パスを入れないでください
-- 認証情報、配信先、実在する個人情報を入れないでください
-- ワークフローは、特定の案件にしか使えない形ではなく、できるだけ汎用化してください
-- 新しい手順を追加するときは、失敗しやすい点と確認方法も書いてください
+- Do not include private filesystem paths
+- Do not include credentials, tokens, destination URLs, or personal data
+- Keep workflows generic enough for other projects to reuse
+- When adding a workflow step, also describe the failure it prevents
+- Prefer small, reviewable checklist items over long hidden assumptions
 
-## 良いIssueの例
+## Good Issue Topics
 
-- SRT推敲チェックリストに足したい確認項目
-- ASS表示崩れの再現例
-- FFmpegコマンドの互換性改善
-- 2トラック動画の話者タグ運用の改善案
+- SRT refinement checks that should be added
+- ASS display problems with minimal examples
+- FFmpeg compatibility improvements
+- Better speaker-tag handling for two-track videos
+- Additional workflow templates for vertical or short-form videos
 

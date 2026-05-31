@@ -1,52 +1,65 @@
 # agent-video-caption-workflows
 
-AIエージェントが、動画素材から字幕付き動画を作る作業を安全に進めるためのワークフロー集です。
+Workflow templates for AI agents that create captioned videos.
 
-Whisperなどで生成したSRTの推敲、ASS変換後の品質確認、字幕焼き込み、成果物整理までを、チェックリスト形式で扱います。
+This repository helps agents move safely from source video to refined subtitles, ASS quality checks, FFmpeg rendering, and final artifact review.
 
-この公開版には、個人環境の絶対パス、認証情報、実際の動画名、配信先情報、非公開プロンプト、特定話者の固有情報は含めません。
+It is designed for workflows that use speech-to-text tools such as Whisper, then ask an AI coding agent to review and prepare subtitles for publishing.
 
-## 想定する用途
+This public version does not include private paths, credentials, real project names, destination URLs, private prompts, or speaker-specific business rules.
 
-- AIエージェントに字幕動画制作を依頼するときの手順書
-- SRT推敲の抜け漏れ防止
-- ASS変換後の表示崩れチェック
-- FFmpegで字幕を焼き込む前の安全確認
-- 1トラック動画と2トラック対談動画の作業分岐
+## Use Cases
 
-## ワークフロー
+- Give an AI agent a safe, repeatable caption-video workflow
+- Prevent missing subtitle sections in long videos
+- Review SRT files without damaging numbering or timestamps
+- Check ASS subtitles before rendering
+- Handle both single-track videos and two-speaker videos
+- Keep FFmpeg rendering commands predictable and reviewable
+
+## Workflows
 
 - `workflows/single-track-caption-video.md`
-  - 1つの音声トラックを使う字幕動画向けです
+  - A workflow for videos that use one primary audio track
 - `workflows/dual-track-caption-video.md`
-  - 2つの音声トラックを扱う対談動画向けです
+  - A workflow for interview or dialogue videos with two audio tracks
 - `workflows/srt-refinement-checklist.md`
-  - Whisper出力などのSRTを人間が読みやすい字幕に整えるための確認項目です
+  - A checklist for refining speech-to-text SRT output
 - `workflows/ass-quality-checklist.md`
-  - ASS変換後の表示、改行、タイムスタンプを確認するための項目です
+  - A checklist for ASS formatting, timing, styles, and visual review
 - `workflows/ffmpeg-rendering.md`
-  - 字幕焼き込み動画を作るためのFFmpegコマンド例です
+  - FFmpeg command examples for burning ASS subtitles into video
 
-## 大事な考え方
+## Core Idea
 
-字幕動画制作では、自動化だけでは拾いきれない小さな事故が起きます。たとえば、後半の字幕欠落、タイムスタンプ重複、長すぎる字幕、話者タグの消失、誤認識の見落としです。
+Captioned video production has small failure modes that are easy to miss:
 
-このワークフロー集は、AIエージェントがそれらを見落としにくくするために、工程ごとの確認事項を明確にします。
+- the final subtitle block is missing
+- timestamps overlap or move backward
+- speaker tags disappear midway through the file
+- subtitles become too long to read
+- line breaks split words or phrases awkwardly
+- the rendered video uses a format that does not play reliably
 
-## 使い方
+These workflow templates make those checks explicit so an AI agent can follow them step by step.
 
-1. 動画の種類に合わせて `single-track-caption-video.md` か `dual-track-caption-video.md` を選びます
-2. SRT生成後に `srt-refinement-checklist.md` で推敲します
-3. ASS変換後に `ass-quality-checklist.md` で表示品質を確認します
-4. `ffmpeg-rendering.md` のコマンド例をもとに字幕付き動画を書き出します
+## Recommended Flow
 
-## 公開範囲
+1. Choose `single-track-caption-video.md` or `dual-track-caption-video.md`
+2. Generate an SRT file with your speech-to-text tool
+3. Refine the SRT with `srt-refinement-checklist.md`
+4. Convert SRT to ASS using your preferred tool
+5. Review the ASS file with `ass-quality-checklist.md`
+6. Render a short test video with `ffmpeg-rendering.md`
+7. Render the final captioned video
 
-このリポジトリは、実運用で得た知見のうち、公開しても問題が少ない汎用ワークフローだけをまとめたものです。
+## Public Scope
 
-個別案件の保存先、音量の固定値、配信先、認証、個人名、固有ジャンルに依存するルールは含めません。
+This repository only contains generic workflow templates and sample files.
 
-## ライセンス
+It intentionally excludes private client data, credentials, service-specific upload steps, real filenames, private prompts, and environment-specific paths.
 
-MIT Licenseです。
+## License
+
+MIT License.
 

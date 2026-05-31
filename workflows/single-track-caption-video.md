@@ -1,65 +1,71 @@
-# 1トラック動画の字幕動画制作ワークフロー
+# Single-Track Captioned Video Workflow
 
-1つの音声トラックをもとに、字幕付き動画を作るための汎用手順です。
+Use this workflow when a video has one primary audio track.
 
-## 1. 素材確認
+## 1. Check Inputs
 
-以下を確認します。
+Confirm the following before starting.
 
-- 入力動画または音声ファイルがあること
-- 音声の長さが想定と合っていること
-- 作業用ディレクトリと成果物用ディレクトリが分かれていること
-- 元ファイルを上書きしないこと
+- The source video or source audio exists
+- The duration matches the expected content
+- Work files and final artifacts are kept in separate directories
+- Original source files will not be overwritten
 
-## 2. 音声抽出
+## 2. Extract Audio
 
-動画から音声を取り出す場合の例です。
+Example command:
 
 ```bash
 ffmpeg -i "input.mp4" -map 0:a:0 -c:a copy "audio_track.m4a" -y
 ```
 
-音声トラックを確認する場合の例です。
+Check available audio streams:
 
 ```bash
 ffprobe -show_streams -select_streams a "input.mp4"
 ```
 
-## 3. SRT生成
+## 3. Generate SRT
 
-Whisperなどの音声認識ツールでSRTを作ります。
+Use your preferred speech-to-text tool to generate an SRT file.
 
-出力ファイルは、元音声と対応が分かる名前にします。
+Example output name:
 
 ```text
 audio_track.srt
 ```
 
-## 4. SRT推敲
+## 4. Refine SRT
 
-`srt-refinement-checklist.md` を使って、全エントリを確認します。
+Use `srt-refinement-checklist.md`.
 
-重要なのは、字幕番号とタイムスタンプを壊さず、読みやすさだけを整えることです。
+The goal is to improve readability without damaging subtitle numbers, timestamps, or meaning.
 
-## 5. ASS変換
+## 5. Convert SRT to ASS
 
-SRTをASSへ変換します。
+Convert the refined SRT into ASS using your preferred converter.
 
-ASSでは、フォント、表示位置、色、縁取り、改行を調整できます。
+ASS allows you to control font, position, outline, color, and line breaks.
 
-## 6. ASS品質確認
+## 6. Review ASS
 
-`ass-quality-checklist.md` を使って、表示崩れ、長すぎる字幕、重複タイムスタンプを確認します。
+Use `ass-quality-checklist.md`.
 
-## 7. 字幕焼き込み
+Check visual layout, long subtitles, timestamp overlaps, and missing final subtitles.
 
-`ffmpeg-rendering.md` の例をもとに、字幕付き動画を書き出します。
+## 7. Render Captioned Video
 
-## 8. 完了確認
+Use `ffmpeg-rendering.md` as a starting point.
 
-- 動画の最初と最後に字幕が出ること
-- 後半の字幕が欠落していないこと
-- 音声と字幕が大きくずれていないこと
-- 動画プレイヤーで正常にシークできること
-- 元ファイルと中間ファイルを取り違えていないこと
+Render a short test clip before rendering the final video.
+
+## 8. Final Review
+
+Confirm these items.
+
+- Subtitles appear at the beginning and end of the video
+- The second half of the video still has subtitles
+- Audio and subtitles are reasonably aligned
+- Seeking works in common video players
+- The final output was not confused with an intermediate file
 

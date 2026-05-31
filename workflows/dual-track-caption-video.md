@@ -1,90 +1,98 @@
-# 2トラック対談動画の字幕動画制作ワークフロー
+# Dual-Track Captioned Video Workflow
 
-2つの音声トラックを扱う対談動画向けの汎用手順です。
+Use this workflow for interviews, dialogues, or other videos with two audio tracks.
 
-## 1. 素材確認
+## 1. Check Inputs
 
-以下を確認します。
+Confirm the following before starting.
 
-- 入力動画に音声トラックが2つあること
-- どちらのトラックがどの話者か分かっていること
-- 最終的に使うメイン音声が決まっていること
-- 話者タグの名前を汎用的に決めていること
+- The source video has two audio tracks
+- You know which track belongs to which speaker
+- The final audio source is decided
+- Speaker tags use generic names
 
-話者タグの例です。
+Recommended generic tags:
 
 ```text
 [SpeakerA]
 [SpeakerB]
 ```
 
-## 2. 音声トラック抽出
+## 2. Extract Audio Tracks
 
 ```bash
 ffmpeg -i "input.mp4" -map 0:a:0 -c:a copy "speaker_a.m4a" -y
 ffmpeg -i "input.mp4" -map 0:a:1 -c:a copy "speaker_b.m4a" -y
 ```
 
-## 3. 参照用SRT生成
+## 3. Generate Reference SRT Files
 
-各トラックから参照用SRTを作ります。
+Generate reference SRT files from each speaker track.
 
 ```text
 speaker_a.srt
 speaker_b.srt
 ```
 
-参照用SRTは、話者判定のために使います。最終字幕のタイムスタンプとして使うかどうかは、音声の状態を見て判断します。
+Reference SRT files are used for speaker attribution. They do not have to be the final timing source.
 
-## 4. メインSRT生成
+## 4. Generate Main SRT
 
-最終動画に使う音声から、メインSRTを作ります。
+Generate the main SRT from the final audio source.
 
 ```text
 main.srt
 ```
 
-## 5. 話者タグ付け
+## 5. Add Speaker Tags
 
-参照用SRTを見ながら、メインSRTの本文先頭に話者タグを付けます。
+Use the reference SRT files to add speaker tags to the main SRT.
 
 ```text
 1
 00:00:02,000 --> 00:00:04,500
-[SpeakerA]今日はよろしくお願いします。
+[SpeakerA]Welcome to the session.
 
 2
 00:00:04,600 --> 00:00:07,000
-[SpeakerB]こちらこそよろしくお願いします。
+[SpeakerB]Thanks for having me.
 ```
 
-## 6. SRT推敲
+## 6. Refine SRT
 
-話者タグを消さないように注意しながら、`srt-refinement-checklist.md` に沿って推敲します。
+Use `srt-refinement-checklist.md`.
 
-## 7. ASS変換
+Do not remove speaker tags while editing text.
 
-話者タグをASSスタイルに変換します。
+## 7. Convert to ASS
 
-例です。
+Map speaker tags to ASS styles.
+
+Example:
 
 ```text
 [SpeakerA] -> StyleA
 [SpeakerB] -> StyleB
 ```
 
-## 8. ASS品質確認
+## 8. Review ASS
 
-`ass-quality-checklist.md` を使って、スタイル、改行、タイムスタンプを確認します。
+Use `ass-quality-checklist.md`.
 
-## 9. 字幕焼き込み
+Check timing, line length, visual layout, and speaker style consistency.
 
-`ffmpeg-rendering.md` の例をもとに、字幕付き動画を書き出します。
+## 9. Render Captioned Video
 
-## 10. 完了確認
+Use `ffmpeg-rendering.md` as a starting point.
 
-- 話者タグが途中で消えていないこと
-- 話者の色分けが最後まで維持されていること
-- 2つの音声が混ざる箇所で字幕が破綻していないこと
-- 最終字幕の終了時刻が動画の終端に近いこと
+Render a short test clip first.
+
+## 10. Final Review
+
+Confirm these items.
+
+- Speaker tags were preserved until ASS style conversion
+- Speaker colors remain consistent throughout the video
+- Overlapping speech did not break the subtitles
+- The final subtitle timestamp reaches the end of the content
 

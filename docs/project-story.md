@@ -1,14 +1,14 @@
-# プロジェクトの背景
+# Project Story
 
-agent-video-caption-workflows は、AIエージェントに字幕動画制作を任せるときの作業漏れを減らすためのワークフロー集です。
+agent-video-caption-workflows started from a practical problem: AI agents can help with captioned video production, but the workflow has many small places where quality can break.
 
-字幕動画制作では、SRT生成、推敲、ASS変換、表示確認、FFmpeg書き出しという複数の工程があります。どれか1つを雑に扱うと、後半の字幕欠落、話者タグ消失、字幕の重なり、読みにくい改行のような問題が起きます。
+Speech-to-text output must be refined without breaking subtitle numbers or timestamps. ASS files must be checked before rendering. FFmpeg commands must preserve compatibility. Long videos need special care so the second half of the subtitles is not accidentally dropped.
 
-このリポジトリは、実運用で起きやすい失敗を、公開可能な形のチェックリストと手順にまとめています。
+This repository turns those practical checks into public, reusable workflow templates.
 
-## Codexが役立つ理由
+## Why Codex Helps
 
-Codexは、ワークフローの改善、チェックリストの追加、FFmpegコマンドの互換性確認、サンプルの拡充、ドキュメントレビューに活用できます。
+Codex can improve this project by reviewing workflow steps, adding missing failure cases, improving FFmpeg examples, expanding sample SRT and ASS files, and keeping the documentation clear.
 
-AIエージェントに作業を任せるためのワークフローなので、Codex自身で改善しやすいプロジェクトです。
+Because the project is itself a set of workflows for AI agents, it is a natural fit for Codex-assisted maintenance.
 

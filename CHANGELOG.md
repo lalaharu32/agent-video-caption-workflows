@@ -2,7 +2,8 @@
 
 ## 0.1.0
 
-- 初回公開用の字幕動画制作ワークフロー集を追加しました
-- 1トラック動画、2トラック動画、SRT推敲、ASS品質確認、FFmpeg書き出しの手順を追加しました
-- サンプルSRTとASSを追加しました
+- Added initial workflow templates for AI-agent captioned video production
+- Added single-track and dual-track video workflows
+- Added SRT refinement, ASS quality review, and FFmpeg rendering checklists
+- Added sample SRT and ASS files
 
